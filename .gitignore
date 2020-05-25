@@ -4,5 +4,6 @@ scripts/cluster-scripts/execute.sh
 scripts/pre-scripts/execute.sh
 scripts/os-scripts/execute.sh
 cloud.properties
+temp/
 
 **/*.DS_Store
