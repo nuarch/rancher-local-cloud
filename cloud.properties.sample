@@ -1,0 +1,28 @@
+### Proxy
+proxyHost=
+proxyPort=
+
+# Add environment specific ranges
+# Usually for Mac/xhyve: 192.64.0.0/16
+# Usually for Windows/Hyper-V: 192.168.0.0/16,,172.17.0.0/16
+proxyNo=127.0.0.1,localhost,0.0.0.0,10.0.0.0/8,.svc
+
+proxyUser=
+proxyPassword=
+
+### Master node (Rancher and K3s control plane)
+masterCpu=2
+masterMem=4G
+masterDisk=20G
+
+### Worker nodes
+workerCount=2
+workerCpu=2
+workerMem=4G
+workerDisk=10G
+
+### Rancher admin password
+rancherPassword=admin
+
+### Rancher settings
+rancherTelemetry=out #values: "in" or "out"

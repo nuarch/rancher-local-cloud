@@ -1,0 +1,3 @@
+#!/bin/bash
+
+# List scripts in oder to be executed.  Scripts must be prependned with "${BASH_SOURCE%/*}/""
