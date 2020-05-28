@@ -1,6 +1,6 @@
 # Rancher Local Cloud
 
-Spin up a local Kubernetes (K8s)cloud, orchestrated by Rancher, on your Mac or Windows machine. 
+Spin up a local Kubernetes (K8s)cloud, orchestrated by Rancher, on your Mac or Windows machine.
 
 ![Overview Image](assets/overview.png)
 
@@ -37,13 +37,15 @@ These scripts were tested on:
 On Windows, there are two issues relating to the proxy:
 
 1. Multipass requires that proxy variables HTTP_PROXY and HTTPS_PROXY be set system wide (i.e. system environment variable)
-    > To fix, please add/set HTTP_PROXY and HTTPS_PROXY to your System Environment.  Also please set NO_PROXY to "127.0.0.1,localhost,.nycnet". 
+    > To fix, please add/set HTTP_PROXY and HTTPS_PROXY to your System Environment.  Also please set NO_PROXY to "127.0.0.1,localhost,.nycnet".
 1. Kubectl and curl do not honor NO_PROXY environment variable
     > To fix, use __./kubectl.sh__ instead of kubectl.  It's a wrapper for kubectl that simply removes any proxy settings and then calls kubectl.
 
 ### Other
 
 1. The certification creation scripts do not ◊work with Windows.  Use another means to create your own certificate bundle
+1. "mkstemp: No such file or directory" error when running script.
+    > Fix by running _sudo chmod 600 ~/.ssh/known_hosts_
 
 ## Usage Instructions
 
@@ -69,8 +71,8 @@ Once the script completes, the generated certificates will be found in _[ROOT]/c
 
 > For Mac, add cacerts.pem and cert.pem to your keychain (make sure to trust root); for Windows, run the following commands:
 >
-> * certutil -addstore -enterprise -f "Root" cacerts.pem 
-> * certutil -addstore -enterprise -f "CA" intcerts.pem 
+> * certutil -addstore -enterprise -f "Root" cacerts.pem
+> * certutil -addstore -enterprise -f "CA" intcerts.pem
 
 ### Step 2 - Create cloud.properties
 
