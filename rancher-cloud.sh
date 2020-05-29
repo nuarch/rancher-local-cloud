@@ -105,12 +105,6 @@ main() {
 
   if [[ "${DELETE_FLAG}" = "true" ]]; then
     delete_cloud
-  elif [[ "${START_FLAG}" = "true" ]]; then
-    start_cloud
-  elif [[ "${STOP_FLAG}" = "true" ]]; then
-    stop_cloud
-  elif [[ "${RESTART_FLAG}" = "true" ]]; then
-    restart_cloud
   elif [[ "${CREATE_FLAG}" = "true" ]]; then
     mkdir -p temp
     if [[ "${PROXY_FLAG}" = "true" ]]; then
@@ -159,6 +153,12 @@ EOM
 
   elif [[ "${LIST_FLAG}" = "true" ]]; then
     list_cloud_nodes
+  elif [[ "${STOP_FLAG}" = "true" ]]; then
+    stop_cloud
+  elif [[ "${RESTART_FLAG}" = "true" ]]; then
+    restart_cloud
+  elif [[ "${START_FLAG}" = "true" ]]; then
+    start_cloud
   else
     print_help
   fi
