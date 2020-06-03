@@ -33,6 +33,9 @@ rancher-cloud Usage:
   [Core]
   -c - Create cloud
   -d - Destroy cloud
+  -u - Start cloud
+  -s - Stop cloud
+  -r - Restart cloud
   -i - Use Istio
   -l - List cloud nodes
   -p - Use proxy
@@ -40,7 +43,7 @@ rancher-cloud Usage:
 EOF
 }
 
-while getopts ":cipdlh:" opt;do
+while getopts ":cipdsrulh:" opt;do
   case $opt in
     h)
       print_help
@@ -51,6 +54,15 @@ while getopts ":cipdlh:" opt;do
       ;;
     d)
       DELETE_FLAG="true"
+      ;;
+    s)
+      STOP_FLAG="true"
+      ;;
+    r)
+      RESTART_FLAG="true"
+      ;;
+    u)
+      START_FLAG="true"
       ;;
     i)
       ISTIO_FLAG="true"
@@ -141,6 +153,12 @@ EOM
 
   elif [[ "${LIST_FLAG}" = "true" ]]; then
     list_cloud_nodes
+  elif [[ "${STOP_FLAG}" = "true" ]]; then
+    stop_cloud
+  elif [[ "${RESTART_FLAG}" = "true" ]]; then
+    restart_cloud
+  elif [[ "${START_FLAG}" = "true" ]]; then
+    start_cloud
   else
     print_help
   fi
@@ -248,6 +266,18 @@ delete_cloud() {
   multipass purge
 
   rm -rf temp
+}
+
+stop_cloud() {
+  multipass stop --all
+}
+
+restart_cloud() {
+  multipass restart --all
+}
+
+start_cloud() {
+  multipass start --all
 }
 
 list_cloud_nodes() {
