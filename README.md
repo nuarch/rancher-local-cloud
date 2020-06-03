@@ -14,7 +14,7 @@ This repository contains bash scripts to deploy a local kubernetes cloud based o
 ## Prerequisites
 
 * Sizable machine with adequate resources to run at least 3 VMs
-* MacOS (Windows support is in progress)
+* MacOS or Windows 10 Pro/Enterpise with Hyper-V
 * [Multipass](https://multipass.run/)
 * [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 * [JQ - command line JSON processor](https://stedolan.github.io/jq/)
@@ -36,18 +36,20 @@ These scripts were tested on:
 
 On Windows, there are two issues relating to the proxy:
 
-1. Multipass requires that proxy variables HTTP_PROXY and HTTPS_PROXY be set system wide (i.e. system environment variable)
-    > To fix, please add/set HTTP_PROXY and HTTPS_PROXY to your System Environment.  Also please set NO_PROXY to "127.0.0.1,localhost,.nycnet".
+1. Multipass requires that proxy variables HTTP_PROXY and HTTPS_PROXY be set system wide (i.e. system environment variable).  If you see message 'launch failed: Remote "" is unknown or unreachable', then your proxy is not set.
+    > To fix, please add/set HTTP_PROXY and HTTPS_PROXY to your System Environment.  Also please set NO_PROXY to "127.0.0.1,localhost,.nycnet".  Once done, restart workstation or restart for the Multipass daemon to see the changes.
 1. Kubectl and curl do not honor NO_PROXY environment variable
     > To fix, use __./kubectl.sh__ instead of kubectl.  It's a wrapper for kubectl that simply removes any proxy settings and then calls kubectl.
 
 ### Other
 
-1. The certification creation scripts do not ◊work with Windows.  Use another means to create your own certificate bundle
+1. The certification creation scripts do not work with Windows.  Use another means to create your own certificate bundle
 1. "mkstemp: No such file or directory" error when running script.
     > Fix by running _sudo chmod 600 ~/.ssh/known_hosts_
 
 ## Usage Instructions
+
+> Debug tip: if you run into issues, uncomment "set -o xtrace" within _rancher-cloud.sh_ to enable full command tracing.
 
 ### Step 0 - Provide Scripts with Execution Permissions
 
