@@ -36,7 +36,7 @@ These scripts were tested on:
 
 On Windows, there are two issues relating to the proxy:
 
-1. Multipass requires that proxy variables HTTP_PROXY and HTTPS_PROXY be set system wide (i.e. system environment variable)
+1. Multipass requires that proxy variables HTTP_PROXY and HTTPS_PROXY be set system wide (i.e. system environment variable).  If you see message 'launch failed: Remote "" is unknown or unreachable', then your proxy is not set.
     > To fix, please add/set HTTP_PROXY and HTTPS_PROXY to your System Environment.  Also please set NO_PROXY to "127.0.0.1,localhost,.nycnet".  Once done, restart workstation or restart for the Multipass daemon to see the changes.
 1. Kubectl and curl do not honor NO_PROXY environment variable
     > To fix, use __./kubectl.sh__ instead of kubectl.  It's a wrapper for kubectl that simply removes any proxy settings and then calls kubectl.
