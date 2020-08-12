@@ -7,3 +7,5 @@ cloud.properties
 temp/
 
 **/*.DS_Store
+
+scripts/cluster-scripts/add-private-docker-registries.sh
