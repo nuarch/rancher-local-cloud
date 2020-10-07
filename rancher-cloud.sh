@@ -337,7 +337,7 @@ install_rancher() {
   # Rancher set to run on port 9090/9443 as K3 uses 80, 443, and 8080.
   echo -e "\nInstalling Rancher (latest version)"
   multipass exec local-rancher -- bash -c \
-  'sudo docker run -d --restart=unless-stopped --name rancher-server -p 9090:80 -p 9443:443 '"${containerProxyCommand}"' -v /home/ubuntu/cert.pem:/etc/rancher/ssl/cert.pem -v /home/ubuntu/key.pem:/etc/rancher/ssl/key.pem -v /home/ubuntu/cacerts.pem:/etc/rancher/ssl/cacerts.pem rancher/rancher:latest'
+  'sudo docker run -d --restart=unless-stopped --name rancher-server -p 9090:80 -p 9443:443 --privileged '"${containerProxyCommand}"' -v /home/ubuntu/cert.pem:/etc/rancher/ssl/cert.pem -v /home/ubuntu/key.pem:/etc/rancher/ssl/key.pem -v /home/ubuntu/cacerts.pem:/etc/rancher/ssl/cacerts.pem rancher/rancher:latest'
   echo -e "\nRancher installed.\n"
 }
 
